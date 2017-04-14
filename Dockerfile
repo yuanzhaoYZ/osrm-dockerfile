@@ -12,7 +12,7 @@ WORKDIR /osrm/build
 RUN cmake .. -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build .
 RUN cmake --build . --target install
-RUN ln -s /osrm/profiles/car profile.lua
+RUN ln -s /osrm/profiles/car.lua profile.lua
 RUN ln -s /osrm/profiles/lib/ lib
 RUN echo "disk=/tmp/stxxl,0,syscall" > /osrm/build/.stxxl
 
