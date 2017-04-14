@@ -33,6 +33,13 @@ docker rm $(docker ps -a -q)
 docker rmi $(docker images -q)
 ```
 
+If the issue persists, you can delete this file providing you aren't worried about loosing any containers/images, and restart Docker. This should get you back on track.
+
+```
+rm ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2
+restart docker
+```
+
 3. Run OSRM image at local.
 
   ```
@@ -123,3 +130,5 @@ bx ic images
 - [Bicycle road OSM data at NYC](http://download.bbbike.org/osm/bbbike/NewYork/)
 
 - [Docker file for OSRM-backend on Bluemix](https://hub.jazz.net/project/masanobu/osrm-dockerfile/overview)
+
+- [No space left on device error](https://forums.docker.com/t/no-space-left-on-device-error/10894/2)
