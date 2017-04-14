@@ -2,6 +2,7 @@
 
 This project provides a docker file that creates an image with Open Source Routing Machine (OSRM) that uses North-America map.
 
+[Docker Image](https://hub.docker.com/r/yuanzhao/osrm_dockerfile/)
 ### 1.Prerequisite
 
 - Bluemix account
