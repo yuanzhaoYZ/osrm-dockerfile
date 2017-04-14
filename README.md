@@ -16,7 +16,7 @@ This project provides a docker file that creates an image with Open Source Routi
   $ git clone https://github.com/yuanzhaoYZ/osrm-dockerfile
   ```
 
-2. Download bicycle Open Street Map data of North America Region, and rename this to "map.osm.pbf".
+2. Download Open Street Map data of North America Region, and rename this to "map.osm.pbf".
 
   ```
   $ cd osrm-dockerfile
