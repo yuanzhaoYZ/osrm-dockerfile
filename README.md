@@ -16,12 +16,19 @@ Memory:	64 GB
 CentOS Linux release 7.2.1511 (Core) 
 
 ```
-### 0.Add more memory / swap to the server
 
-Determine the size of the new swap file in megabytes and multiply by 1024 to determine the number of blocks. For example, the block size of a 1200 MB swap file is 1228800.
+### 1.Prerequisite
+## 1.1 Tools and Accounts
+- Bluemix account or Docker Hub account
+- [Installation of docker to the local](https://docs.docker.com/installation/)
+- [Installation of Cloud Foundry plug-in for IBM Containers](https://www.ng.bluemix.net/docs/containers/container_cli_ov.html#container_cli_choosing)
+
+## 1.2 Create a Swap File
+
+Determine the size of the new swap file in megabytes and multiply by 1024 to determine the number of blocks. For example, the block size of a 140000 MB (140GB) swap file is 143360000  (140000*1024).
 At a shell prompt as root, type the following command with count being equal to the desired block size:
 ```
-dd if=/dev/zero of=/swapfile bs=1024 count=1228800
+dd if=/dev/zero of=/swapfile bs=1024 count=143360000
 chmod 600 /swapfile
 ```
 
@@ -42,7 +49,7 @@ swapoff -v /swapfile
 To enable it at boot time, edit /etc/fstab to include the following entry:
 
 ```
-  /swapfile          swap            swap    defaults        0 0
+/swapfile          swap            swap    defaults        0 0
 ```  
 
 The next time the system boots, it enables the new swap file.
@@ -60,10 +67,6 @@ free
 
 
 
-### 1.Prerequisite
-- Bluemix account or Docker Hub account
-- [Installation of docker to the local](https://docs.docker.com/installation/)
-- [Installation of Cloud Foundry plug-in for IBM Containers](https://www.ng.bluemix.net/docs/containers/container_cli_ov.html#container_cli_choosing)
 
 
 ### 2.How to create container image
