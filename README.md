@@ -1,6 +1,6 @@
 ## Docker file for OSRM-backend
 
-This project provides a docker file that creates an image with Open Source Routing Machine (OSRM) that uses North-America map.
+This project provides a docker file that creates an image with Open Source Routing Machine (OSRM) that uses NYC map.
 
 [Docker Image](https://hub.docker.com/r/yuanzhao/osrm_dockerfile/)
 ### 1.Prerequisite
