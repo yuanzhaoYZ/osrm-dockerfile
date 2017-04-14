@@ -89,14 +89,20 @@ restart docker
 
 2. Find the image ID for the `osrm_dockerfile` image, in the third column. In this example, the id is `7d9495d03763`, but yours will be different.
 ```
+$ docker images
 
+REPOSITORY           TAG          IMAGE ID            CREATED             SIZE
+docker-whale         latest       7d9495d03763        38 minutes ago      273.7 MB
+<none>               <none>       5dac217f722c        45 minutes ago      273.7 MB
+docker/whalesay      latest       fb434121fc77        4 hours ago         247 MB
+hello-world          latest       91c95931e552        5 weeks ago         910 B
 ```
-3. Tag the docker-whale image using the docker tag command and the image ID.
+3. Tag the osrm_dockerfile image using the docker tag command and the image ID.
 ```
 docker tag 7d9495d03763 yuanzhao/osrm_dockerfile:north_america
 ```
 
-4. Run docker images again to verify that the docker-whale image has been tagged.
+4. Run docker images again to verify that the osrm_dockerfile image has been tagged.
 ```
 $ docker images
 
