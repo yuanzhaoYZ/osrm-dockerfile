@@ -12,9 +12,9 @@ This project provides a docker file that creates an image with Open Source Routi
 
 1. Clone this project to local.
 
-  ```
-  $ git clone https://github.com/yuanzhaoYZ/osrm-dockerfile
-  ```
+```
+$ git clone https://github.com/yuanzhaoYZ/osrm-dockerfile
+```
 
 2. Create OSRM image.
 
