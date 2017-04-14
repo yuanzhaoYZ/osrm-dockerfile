@@ -16,14 +16,14 @@ This project provides a docker file that creates an image with Open Source Routi
   $ git clone https://github.com/yuanzhaoYZ/osrm-dockerfile
   ```
 
-1. Download bicycle Open Street Map data of North America Region, and rename this to "map.osm.pbf".
+2. Download bicycle Open Street Map data of North America Region, and rename this to "map.osm.pbf".
 
   ```
   $ cd osrm-dockerfile
   $ wget -O map.osm.pbf http://download.geofabrik.de/north-america-latest.osm.pbf
   ```
 
-1. Create OSRM image.
+3. Create OSRM image.
 
   ```
   $ docker build -t osrm .
@@ -33,20 +33,27 @@ This project provides a docker file that creates an image with Open Source Routi
   osrm                latest              f72ec144195e        23 seconds ago      806.6 MB
   ```
 
-1. Run OSRM image at local.
+Note: If you get errors like this `Error processing tar file(exit status 1): write /map.osm.pbf: no space left on device`, you might need to delete some unsed images in docker to make some room for the OSRM image.
+```
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -q)
+```
+
+4. Run OSRM image at local.
 
   ```
   $ docker run -t -d -p 5000:5000 osrm
   ```
 
-1. Check IP address of your local docker machine.
+5. Check IP address of your local docker machine.
 
   ```
   $ docker-machine ip default
   [IP address of your docker machine]
   ```
 
-1. Check API response by opening the following link with your browser.
+6. Check API response by opening the following link with your browser.
 
   URL: http://[ IP address of your docker machine ]/viaroute
 
