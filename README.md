@@ -18,10 +18,11 @@ CentOS Linux release 7.2.1511 (Core)
 ```
 ### 0.Add more memory / swap to the server
 
-Determine the size of the new swap file in megabytes and multiply by 1024 to determine the number of blocks. For example, the block size of a 64 MB swap file is 12036000.
+Determine the size of the new swap file in megabytes and multiply by 1024 to determine the number of blocks. For example, the block size of a 1200 MB swap file is 1228800.
 At a shell prompt as root, type the following command with count being equal to the desired block size:
 ```
-dd if=/dev/zero of=/swapfile bs=1024 count=12036000
+dd if=/dev/zero of=/swapfile bs=1024 count=1228800
+chmod 600 /swapfile
 ```
 
 Setup the swap file with the command:
@@ -32,6 +33,10 @@ mkswap /swapfile
 To enable the swap file immediately but not automatically at boot time:
 ```
 swapon /swapfile
+```
+To remove it 
+```
+swapoff -v /swapfile
 ```
 
 To enable it at boot time, edit /etc/fstab to include the following entry:
