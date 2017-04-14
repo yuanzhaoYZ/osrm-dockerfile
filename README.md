@@ -17,7 +17,15 @@ This project provides a docker file that creates an image with Open Source Routi
 $ git clone https://github.com/yuanzhaoYZ/osrm-dockerfile
 ```
 
-2. Create OSRM image.
+2. Download OSM File
+
+```
+
+cd osrm-dockerfile
+wget http://download.geofabrik.de/north-america-latest.osm.pbf
+```
+
+3. Create OSRM image.
 
   ```
   $ docker build -t osrm .
@@ -41,20 +49,20 @@ rm ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Doc
 restart docker
 ```
 
-3. Run OSRM image at local.
+4. Run OSRM image at local.
 
   ```
   $ docker run -t -d -p 5000:5000 osrm
   ```
 
-4. Check IP address of your local docker machine.
+5. Check IP address of your local docker machine.
 
   ```
   $ docker-machine ip default
   [IP address of your docker machine]
   ```
 
-5. Check API response by opening the following link with your browser.
+6. Check API response by opening the following link with your browser.
 
   URL: http://[ IP address of your docker machine ]/viaroute
 
