@@ -19,7 +19,6 @@ RUN echo "disk=/tmp/stxxl,15G,syscall autogrow" > .stxxl
 
 
 WORKDIR /osrm/build
-RUN wget http://download.geofabrik.de/north-america-latest.osm.pbf
 RUN mv north-america-latest.osm.pbf map.osm.pbf
 #ADD map.osm.pbf map.osm.pbf
 RUN ./osrm-extract -p profile.lua map.osm.pbf 
