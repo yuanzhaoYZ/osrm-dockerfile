@@ -2,12 +2,27 @@
 
 This project provides a docker file that creates an image with Open Source Routing Machine (OSRM) that uses North-America map.
 
-[Docker Image](https://hub.docker.com/r/yuanzhao/osrm_dockerfile/)
-### 1.Prerequisite
+You can download the pre-built Docker image [here](https://hub.docker.com/r/yuanzhao/osrm_dockerfile/).
 
+The docker image was built on a baremetal CentOS 7 Server with Docker CE 
+```
+CPUs:	32 CORE
+Memory:	64 GB
+
+# uname -r
+3.10.0-327.13.1.el7.x86_64
+
+#cat /etc/*-release file
+CentOS Linux release 7.2.1511 (Core) 
+
+```
+
+
+### 1.Prerequisite
 - Bluemix account
 - [Installation of docker to the local](https://docs.docker.com/installation/)
 - [Installation of Cloud Foundry plug-in for IBM Containers](https://www.ng.bluemix.net/docs/containers/container_cli_ov.html#container_cli_choosing)
+
 
 ### 2.How to create container image
 
