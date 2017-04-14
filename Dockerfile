@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 RUN apt-get update
 RUN apt-get install -y build-essential git cmake pkg-config \
 libbz2-dev libstxxl-dev libstxxl1v5 libxml2-dev \
-libzip-dev libboost-all-dev lua5.2 liblua5.2-dev libtbb-dev
+libzip-dev libboost-all-dev lua5.2 liblua5.2-dev libtbb-dev wget
 
 RUN mkdir -p /osrm
 RUN git clone git://github.com/Project-OSRM/osrm-backend.git /osrm
