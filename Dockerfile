@@ -18,7 +18,8 @@ RUN echo "disk=/tmp/stxxl,25000,syscall" > .stxxl
 
 
 WORKDIR /osrm/build
-RUN wget -O map.osm.pbf http://download.geofabrik.de/north-america-latest.osm.pbf
+RUN wget http://download.geofabrik.de/north-america-latest.osm.pbf
+RUN mv north-america-latest.osm.pbf map.osm.pbf
 #ADD map.osm.pbf map.osm.pbf
 RUN ./osrm-extract -p profile.lua map.osm.pbf 
 RUN ./osrm-contract map.osrm
