@@ -2,25 +2,25 @@
 
 This project provides a docker file that creates an image with Open Source Routing Machine (OSRM) that uses NY bicycle map.
 
-### Prerequisite
+### 1.Prerequisite
 
 - Bluemix account
 - [Installation of docker to the local](https://docs.docker.com/installation/)
 - [Installation of Cloud Foundry plug-in for IBM Containers](https://www.ng.bluemix.net/docs/containers/container_cli_ov.html#container_cli_choosing)
 
-### How to create container image
+### 2.How to create container image
 
 1. Clone this project to local.
 
   ```
-  $ git clone https://hub.jazz.net/git/masanobu/osrm-dockerfile
+  $ git clone https://github.com/yuanzhaoYZ/osrm-dockerfile
   ```
 
 1. Download bicycle Open Street Map data of NYC, and rename this to "map.osm.pbf".
 
   ```
   $ cd osrm-dockerfile
-  $ wget -O map.osm.pbf http://download.bbbike.org/osm/bbbike/NewYork/NewYork.osm.pbf
+  $ wget -O map.osm.pbf http://download.geofabrik.de/north-america-latest.osm.pbf
   ```
 
 1. Create OSRM image.
@@ -36,7 +36,7 @@ This project provides a docker file that creates an image with Open Source Routi
 1. Run OSRM image at local.
 
   ```
-  $ docker run -t -d -p 80:80 osrm
+  $ docker run -t -d -p 5000:5000 osrm
   ```
 
 1. Check IP address of your local docker machine.
@@ -51,41 +51,51 @@ This project provides a docker file that creates an image with Open Source Routi
   URL: http://[ IP address of your docker machine ]/viaroute
 
   Response: {} (Blank JSON object)
-  
-### How to deploy OSRM image to IBM Container and run on Bluemix
 
-2. Login to Bluemix
+### 3.How to deploy OSRM image to IBM Container and run on Bluemix
 
-  ```
-  $ cf login
-  ```
+1. Install Bluemix CLI
 
-2. Login to IBM Container
+If you haven't already, download the [BluemixCLI](http://clis.ng.bluemix.net/ui/home.html)
 
-  ```
-  $ cf ic login
-  ```
+2. Install the Bluemix Containers Plugin
 
-2. Set up the namespace on IBM Container (for the first time)
+```
+bluemix plugin install IBM-Containers -r Bluemix
 
-  ```
-  $ cf ic namespace set [your namespace on IBM Container]
-  ```
+```
 
-2. Set the tag name of OSRM image for the deployment to IBM Container repositry
+3. Log in to Bluemix API
 
-  ```
-  $ docker tag osrm registry.ng.bluemix.net/[your namespace on IBM Container]/osrm
-  ```
-  
-2. Deploy the OSRM image to IBM Container repositry
+```
+bluemix login -a https://api.ng.bluemix.net
+```
 
-  ```
-  $ docker push registry.ng.bluemix.net/[your namespace on IBM Container]/osrm
-  (take a little time)
-  ```
+4. Set a namespace
 
-2. Run the OSRM image on IBM Container
+```
+bx ic namespace-set zhaoy_ibm
+```
+
+5. Initialize containers plug-in
+```
+bluemix ic init
+```
+
+6. Deploy the OSRM image to IBM Container repositry
+
+```
+docker tag zhaoy/osrm registry.ng.bluemix.net/zhaoy_ibm/osrm
+docker push registry.ng.bluemix.net/zhaoy_ibm/osrm
+```
+
+7. Verify that the image exists in your image registry by running the bx ic images command.
+
+```
+bx ic images
+```
+
+8. Run the OSRM image on IBM Container
 
   3. Login to Bluemix and select "Containers" on dashboard
   3. Click the "osrm" image from "Container images" and deploy a single container by checking as follows:
@@ -97,7 +107,7 @@ This project provides a docker file that creates an image with Open Source Routi
     - Public ports: 80
   3. Click "CREATE" button
 
-2. Check API response by opening the following link with your browser.
+9. Check API response by opening the following link with your browser.
 
   URL: http://[ assigned Pubic IP address ]/viaroute
 
@@ -111,3 +121,5 @@ This project provides a docker file that creates an image with Open Source Routi
 - [Open Source Routing Machine](https://github.com/Project-OSRM/osrm-backend)
 
 - [Bicycle road OSM data at NYC](http://download.bbbike.org/osm/bbbike/NewYork/)
+
+- [Docker file for OSRM-backend on Bluemix](https://hub.jazz.net/project/masanobu/osrm-dockerfile/overview)
