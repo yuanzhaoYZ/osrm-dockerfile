@@ -19,7 +19,7 @@ CentOS Linux release 7.2.1511 (Core)
 
 
 ### 1.Prerequisite
-- Bluemix account
+- Bluemix account or Docker Hub account
 - [Installation of docker to the local](https://docs.docker.com/installation/)
 - [Installation of Cloud Foundry plug-in for IBM Containers](https://www.ng.bluemix.net/docs/containers/container_cli_ov.html#container_cli_choosing)
 
@@ -83,7 +83,56 @@ restart docker
 
   Response: {} (Blank JSON object)
 
-### 3.How to deploy OSRM image to IBM Container and run on Bluemix
+### 4.How to deploy OSRM image to Docker Hub
+
+1. If you don’t already have a terminal open, open one now.Run docker images to list the images stored locally:
+
+2. Find the image ID for the `osrm_dockerfile` image, in the third column. In this example, the id is `7d9495d03763`, but yours will be different.
+```
+
+```
+3. Tag the docker-whale image using the docker tag command and the image ID.
+```
+docker tag 7d9495d03763 yuanzhao/osrm_dockerfile:north_america
+```
+
+4. Run docker images again to verify that the docker-whale image has been tagged.
+```
+$ docker images
+
+REPOSITORY                  TAG       IMAGE ID        CREATED          SIZE
+yuanzhao/osrm_dockerfile   latest    7d9495d03763    5 minutes ago    273.7 MB
+yuanzhao/osrm_dockerfile   latest    7d9495d03763    2 hours ago      273.7 MB
+<none>                      <none>    5dac217f722c    5 hours ago      273.7 MB
+docker/whalesay             latest    fb434121fc77    5 hours ago      247 MB
+hello-world                 latest    91c95931e552    5 weeks ago      910 B
+```
+The same image ID actually now exists in two different repositories.
+
+
+5. Before you can push the image to Docker Hub, you need to log in, using the docker login command. The command doesn’t take any parameters, but prompts you for the username and password, as below:
+```
+$ docker login
+
+    Username: *****
+    Password: *****
+    Login Succeeded
+
+```
+
+6. Push your tagged image to Docker Hub, using the docker push command. A lot of output is generated, as each layer is pushed separately. That output is truncated in the example below.
+```
+$ docker push yuanzhao/osrm_dockerfile
+
+The push refers to a repository [yuanzhao/osrm_dockerfile] (len: 1)
+7d9495d03763: Image already exists
+...
+e9e06b06e14c: Image successfully pushed
+Digest: sha256:ad89e88beb7dc73bf55d456e2c600e0a39dd6c9500d7cd8d1025626c4b985011
+
+```
+
+### 5.How to deploy OSRM image to IBM Container and run on Bluemix
 
 1. Install Bluemix CLI
 
