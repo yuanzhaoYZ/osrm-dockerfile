@@ -19,8 +19,7 @@ RUN echo "disk=/tmp/stxxl,15G,syscall autogrow" > .stxxl
 
 
 WORKDIR /osrm/build
-RUN mv north-america-latest.osm.pbf map.osm.pbf
-#ADD map.osm.pbf map.osm.pbf
+ADD north-america-latest.osm.pbf map.osm.pbf
 RUN ./osrm-extract -p profile.lua map.osm.pbf 
 RUN ./osrm-contract map.osrm
 RUN ./osrm-routed map.osrm
