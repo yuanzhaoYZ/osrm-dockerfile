@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 RUN apt-get update
 RUN apt-get install -y build-essential git cmake pkg-config \
 libbz2-dev libstxxl-dev libstxxl1v5 libxml2-dev \
-libzip-dev libboost-all-dev lua5.2 liblua5.2-dev libtbb-dev wget
+libzip-dev libboost-all-dev lua5.2 liblua5.2-dev libtbb-dev
 
 RUN mkdir -p /osrm
 RUN git clone git://github.com/Project-OSRM/osrm-backend.git /osrm
@@ -14,14 +14,14 @@ RUN cmake --build .
 RUN cmake --build . --target install
 RUN ln -s /osrm/profiles/car.lua profile.lua
 RUN ln -s /osrm/profiles/lib/ lib
-RUN echo "disk=/tmp/stxxl,0,syscall" > /osrm/build/.stxxl
+RUN echo "disk=/tmp/stxxl,25000,syscall" > .stxxl
 
 
 WORKDIR /osrm/build
-#ADD map.osm.pbf map.osm.pbf
-RUN wget -O map.osm.pbf http://download.geofabrik.de/north-america-latest.osm.pbf
-RUN ./osrm-extract /osrm/build/map.osm.pbf
-RUN ./osrm-prepare /osrm/build/map.osrm
+ADD map.osm.pbf map.osm.pbf
+RUN ./osrm-extract -p profile.lua map.osm.pbf 
+RUN ./osrm-contract map.osrm
+RUN ./osrm-routed map.osrm
 
 EXPOSE 5000
 CMD ["/osrm/build/osrm-routed", "/osrm/build/map.osrm", "-p", "5000"]
