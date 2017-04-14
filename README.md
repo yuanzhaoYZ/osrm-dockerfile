@@ -1,6 +1,6 @@
 ## Docker file for OSRM-backend
 
-This project provides a docker file that creates an image with Open Source Routing Machine (OSRM) that uses NY bicycle map.
+This project provides a docker file that creates an image with Open Source Routing Machine (OSRM) that uses North-America map.
 
 ### 1.Prerequisite
 
@@ -16,7 +16,7 @@ This project provides a docker file that creates an image with Open Source Routi
   $ git clone https://github.com/yuanzhaoYZ/osrm-dockerfile
   ```
 
-1. Download bicycle Open Street Map data of NYC, and rename this to "map.osm.pbf".
+1. Download bicycle Open Street Map data of North America Region, and rename this to "map.osm.pbf".
 
   ```
   $ cd osrm-dockerfile
