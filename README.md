@@ -6,8 +6,8 @@ You can download the pre-built Docker image [here](https://hub.docker.com/r/yuan
 
 The docker image was built on a baremetal CentOS 7 Server with Docker CE 
 ```
-CPUs:	32 CORE
-Memory:	64 GB
+CPUs:	52 CORE
+Memory:	256 GB
 
 # uname -r
 3.10.0-327.13.1.el7.x86_64
